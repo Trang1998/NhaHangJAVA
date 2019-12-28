@@ -1,0 +1,186 @@
+USE [Java_WebBanDoDien]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 12/26/2019 12:11:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[OrderItems]    Script Date: 12/26/2019 12:11:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderItems](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NULL,
+	[ProductId] [int] NULL,
+	[Price] [decimal](18, 0) NULL,
+	[Quantity] [int] NULL,
+	[TotalPrice] [decimal](18, 0) NULL,
+ CONSTRAINT [PK_OrderItems] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Orders]    Script Date: 12/26/2019 12:11:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NULL,
+	[OrderDate] [datetime] NULL,
+	[ShipmentPrice] [decimal](18, 0) NULL,
+	[ReceiveDate] [datetime] NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 12/26/2019 12:11:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Products](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](150) NULL,
+	[Price] [decimal](18, 0) NULL,
+	[PromotionPrice] [decimal](18, 0) NULL,
+	[Image] [nvarchar](250) NULL,
+	[Detail] [nvarchar](max) NULL,
+	[Quantity] [int] NULL,
+	[CategoryId] [int] NULL,
+	[PromotionPercent] [int] NULL,
+	[isProductNew] [bit] NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 12/26/2019 12:11:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](50) NULL,
+	[Password] [nvarchar](50) NULL,
+	[CreatedAt] [datetime] NULL,
+	[Role] [int] NULL,
+	[Address] [nvarchar](250) NULL,
+	[Phone] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[Categories] ON 
+
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (1, N'Món khai vị')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (2, N'Món chính')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (3, N'Cơm')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (4, N'Canh')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (5, N'Thực đơn tráng miệng')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (6, N'Menu rượu')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (7, N'Menu rượu vang')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (8, N'Nước ngọt')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (9, N'Món ăn nhanh')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (10, N'Khác')
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+SET IDENTITY_INSERT [dbo].[OrderItems] ON 
+
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (1, 3, 22, CAST(9799 AS Decimal(18, 0)), 2, CAST(19598 AS Decimal(18, 0)))
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (2, 3, 27, CAST(499 AS Decimal(18, 0)), 3, CAST(1497 AS Decimal(18, 0)))
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (3, 3, 28, CAST(1878 AS Decimal(18, 0)), 1, CAST(1878 AS Decimal(18, 0)))
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (4, 3, 38, CAST(1699 AS Decimal(18, 0)), 10, CAST(16990 AS Decimal(18, 0)))
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (5, 3, 40, CAST(13999 AS Decimal(18, 0)), 1, CAST(13999 AS Decimal(18, 0)))
+INSERT [dbo].[OrderItems] ([Id], [OrderId], [ProductId], [Price], [Quantity], [TotalPrice]) VALUES (6, 3, 25, CAST(408 AS Decimal(18, 0)), 8, CAST(3264 AS Decimal(18, 0)))
+SET IDENTITY_INSERT [dbo].[OrderItems] OFF
+SET IDENTITY_INSERT [dbo].[Orders] ON 
+
+INSERT [dbo].[Orders] ([Id], [UserId], [OrderDate], [ShipmentPrice], [ReceiveDate]) VALUES (3, NULL, CAST(0x0000AB220010D963 AS DateTime), CAST(12 AS Decimal(18, 0)), CAST(0x0000AB220010D963 AS DateTime))
+SET IDENTITY_INSERT [dbo].[Orders] OFF
+SET IDENTITY_INSERT [dbo].[Products] ON 
+
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (22, N'	Salad cà chua dưa chuột', CAST(40000 AS Decimal(18, 0)), CAST(40000 AS Decimal(18, 0)), N'https://sieuthistmart.com/wp-content/uploads/2015/11/nen-an-mon-gi-trong-ngay-nang-nong-2.jpg', N'Món ăn đơn giản nhưng rất mát và dễ ăn và đầu bữa tiệc', NULL, 1, NULL, NULL)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (23, N'Salad ra trộn', CAST(60000 AS Decimal(18, 0)), CAST(60000 AS Decimal(18, 0)), N'https://thegioihaisan.vn/wp-content/uploads/2016/06/5_3.jpg', N'Rất ngon và thanh vị của rau mầm. Đặc biết rất giàu dinh dưỡng và chất xơ', 1, 1, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (24, N'Salad thiên đường xanh', CAST(70000 AS Decimal(18, 0)), CAST(70000 AS Decimal(18, 0)), N'https://vcdn-ngoisao.vnecdn.net/2018/08/08/salad-2-8693-1533700852.jpg', N'Món ăn giàu dinh dưỡng, rất mát và bổ cho sức khoẻ', 1, 1, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (25, N'Nộm ngó sen hoa chuối', CAST(65000 AS Decimal(18, 0)), CAST(65000 AS Decimal(18, 0)), N'https://gonhub.com/wp-content/uploads/2019/02/tong-hop-5-cach-lam-mon-nom-ga-hoa-chuoi-cac-mon-nom-ga-ngon-khac-chieu-dai-ca-nha.jpg', N'Đây là món nộm rất được ưa chuộng trong các bữa tiệc liên hoan, tiệc cưới hỏi, đầy tháng…Món ăn hài hào các vị chua cay mặn ngọt, hoa chuối kết hợp với ngó sen ăn rất lạ miệng, thanh và dễ chịu. Hoa chuối và ngó sen là 2 thực phẩm quý hàng đầu trong việc giúp làm thanh nhiệt, bổ sung dinh dưỡng cho cơ thể. Món nộm ngó sen hoa chuối giúp thanh lộc cơ thể, giải trừ độc tố, tăng cường sức đề kháng và có tác dụng mát gan rất tốt.Định lượng: 01 đĩa', 1, 1, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (26, N'Nộm miến tôm thịt', CAST(100000 AS Decimal(18, 0)), CAST(100000 AS Decimal(18, 0)), N'https://znews-photo.zadn.vn/w660/Uploaded/Ohunoaa/2016_05_31/goi_sen_1.jpg', N'Nộm miến tôm thịt có vị chua ngọt dịu nhẹ, sợi miến cùng các loại rau củ giữ được độ giòn, tôm thịt thì béo ngậy tạo nên món ăn vô cùng tinh tế và quyến rũ. Nộm miến tôm thịt bạn có thể dùng làm món khai vị hoặc dùng trong những bữa cơm, bữa tiệc đều rất ngon. Khi chế biến nộm miến tôn thịt, đầu bép sẽ có bí quyết để làm hết nước ở các nguyên liệu trước khi cho vào trộn nộm. Khi nộm ít nước, miến sẽ giòn và ngon hơn. Định lượng: 01 đĩa', 1, 1, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (27, N'Mực ống nhồi thịt', CAST(250000 AS Decimal(18, 0)), CAST(225000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/450//uploads/content/muc-ong-nhoi-thit.jpg', N'Mực ống nhồi thịt là món ăn đẹp mắt, đặc biệt dùng để đãi khách trong các buôit tiệc, những bữa liên hoan cơ quan, gia đình, bạn bè... bởi sự thơm ngon lại tạo được ấn tượng từ sự “ cầu kỳ” của món ăn. Khi ăn món mực ống nhồi thịt tại Nấu cỗ 29, thực khách sẽ cảm nhận rõ vị ngọt của thịt mự, độ giòn giòn của vỏ mực cùng phần nhân đậm đà hấp dẫn được chấm với nước chấm công thức riêng. Tất cả làm tăng thêm hương vị ngọt ngọt, cay cay, mặn mặn khiến bất kì ai thưởng thức cũng hết lời khen ngợi.Định lượng: hơn 0.3kg/ đĩa', 1, 2, 10, 1)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (28, N'Mực xào cần tỏi', CAST(220000 AS Decimal(18, 0)), CAST(198000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/m%E1%BB%B1cx%C3%A0oc%E1%BA%A7nt%E1%BB%8Fi.jpg', N'Cách làm mực xào cần tỏi là một món ăn khá quen thuộc, nhưng bên cạnh các món truyền thống như mực xào dứa, mực xào tỏi, mực xào cà chua... thì mực xào cần tỏi tây lại mang một phong cách rất riêng, một hương vị cực tây được đem lại từ cần tỏi tây. Với vị ngọt của thịt mực cộng hưởng với hương thơm hơi hăng hăng của cần tây và chút dậy mùi đến từ tỏi sẽ cho thực khách một món mặn tuyệt vời.  Tuy là có cách làm không quá cầu kì, nhưng để làm ra Mực xào cần tỏi hoàn hảo nhất thì lại cần có bí quyết riêng để có thể giữ cho mực vẫn trọn hương vị tự nhiên với vị ngọt thanh cực chất, cực độc đáo. Định lượng: hơn 0.3kg/ đĩa', 1, 2, 10, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (29, N'Tôm xốt chua ngọt', CAST(330000 AS Decimal(18, 0)), CAST(297000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/111108mbttomsotsp.jpg', N'Những món ăn có vị chua chua, ngọt ngọt là những món ăn rất dễ kích thích được vị giác. Và tôm xốt chua ngọt là một trong số những món như vậy. Tôm xốt chua ngọt ngon cơm giúp cho bữa tiệc gia đình thêm phần hấp dẫn và ấn tượng. Món tôm xốt chua ngọt với màu sắc vô cùng bắt mắt, có hương vị thơm ngon, đặc biệt bởi sự hòa quyện giữa vị ngọt của thịt tôm cùng nước xốt độc đáo, mang đến điều bất ngờ cho thực khách khi thưởng thức. Định lượng: 6 con loại 1kg/ 18 con', 1, 2, 10, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (30, N'Lẩu thập cẩm', CAST(500000 AS Decimal(18, 0)), CAST(425000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/l%E1%BA%A9utc.jpg', N'Với những ngày mùa đông giá rét như thế này thì món lẩu luôn được ưu tiên hàng đầu bởi vị thơm ngon, hấp dẫn từ nhiều loại thực phẩm, nóng sốt và ngọt lừ. Không chỉ thế mà món lẩu còn mang thêm hơi ấm gia đình bạn bè khi tất cả cùng quây quần bên nồi lẩu và nói chuyện vui vẻ', 1, 2, 15, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (31, N'Cá diêu hồng chiên xù', CAST(170000 AS Decimal(18, 0)), CAST(161500 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/ca-dieu-hong-chien-xu-1.jpg', N'Cá Diêu hồng chiên xù được tẩm ướp gia vị, lăn bột được chiên ở nhiệt độ 200 độ C, sau đó vớt ra để ráo. Cá Diêu hồng file chiên xù sẽ cho một màu vàng rất đẹp mắt, da gà giòn thấm đẫm gia vị, thịt bên trong mềm, do lớp bột chiên bên ngoài đã giúp giữ thịt cá bên trong không bị mất nước, khi ăn vị ngọt từ thịt cá kết hợp cùng mùi thơm đặc trưng đến từ những nguyên liệu đi kèm sẽ khiến thực khách không thể chối từ ngay lần thưởng thức đầu tiên. Định lượng: 1 con loại 1kg/ con', 1, 2, 5, 1)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (32, N'Cá diêu hồng rang muối', CAST(170000 AS Decimal(18, 0)), CAST(161500 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/c%C3%A1di%C3%AAuh%E1%BB%93ngrangmu%E1%BB%91i.jpg', N'Cá diêu hồng thực chất là "con lai" của cá rô phi đen, là một loài cá nước ngọt thuộc họ Cá rô phi có nguồn gốc hình thành từ lai tạo nên giá trị dinh dưỡng rất cao Cá diêu hồng sẽ được lọc thịt và rang lên với muối cho một màu vàng rất đẹp mắt, da giòn thấm đẫm gia, thịt bên trong mềm vị kết hợp cùng vị mặn mặn lạ miệng của lớp muối rang và mùi thơm đặc trưng đến từ những nguyên liệu đi kèm sẽ khiến thực khách không thể chối từ ngay lần thưởng thức đầu tiên. Định lượng: 1 con loại 1kg/ con', 1, 2, 5, 1)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (33, N'Cá song sốt chua ngọt', CAST(550000 AS Decimal(18, 0)), CAST(522500 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/ca-song-sot-chua-ngot-2.jpg', N'Cá Soong xốt chua ngọt ngon cơm giúp cho bữa tiệc gia đình thêm phần hấp dẫn và ấn tượng. Món cá Soong xốt chua ngọt với màu sắc vô cùng bắt mắt, có hương vị thơm ngon, đặc biệt bởi sự hòa quyện giữa vị ngọt của thịt cá cùng nước xốt độc đáo, mang đến điều bất ngờ cho thực khách khi thưởng thức. Định lượng: 1 con loại 1kg/ con', 1, 2, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (34, N'Cá song file rang muối', CAST(550000 AS Decimal(18, 0)), CAST(522500 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/c%C3%A1songfilerangmu%E1%BB%91i.jpg', N'Cá Soong sẽ được lọc thịt và rang lên với muối cho một màu vàng rất đẹp mắt, da giòn thấm đẫm gia, thịt bên trong mềm vị kết hợp cùng vị mặn mặn lạ miệng của lớp muối rang và mùi thơm đặc trưng đến từ những nguyên liệu đi kèm sẽ khiến thực khách không thể chối từ ngay lần thưởng thức đầu tiên.Định lượng: 1 con loại 1kg/ con', 1, 2, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (35, N'Xôi gấc hạt sen', CAST(60000 AS Decimal(18, 0)), CAST(60000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/xoigac.jpg', N'Xôi gấc hạt sen quyến rũ thực khách bởi màu đỏ đẹp mắt đên từ gấc ôm lấy những hạt gạo nếp thơm. Món xôi gấc nổi bật bởi vị ngọt của gạo kết hợp với vị thanh và bùi của hạt sen. Xôi gấc hạt sen cung cấp rất nhiều chất dinh dưỡng cho cơ thể, có tác dụng giải nhiệt, tăng cường tuần hoàn máu, tăng sức đề kháng, tốt cho người có vấn đề về tim, gan, thận…Định lượng: 1 đĩa', 1, 3, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (36, N'Xôi xéo rắc ruốc', CAST(60000 AS Decimal(18, 0)), CAST(60000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/2017-05-05_135737.jpg', N'Xôi xéo ngon, dễ ăn và đòi hỏi sự kì công đến từ người đầu bếp Khi ăn, thực khách cảm nhận rõ những miếng xôi xéo vàng đượm, nóng hổi, ngọt đậm kết hợp hài hòa với lớp ruốc đận đà, mềm mại cùng những lát hành phi được chế biến vô cùng kỳ công, vàng ruộm giòn tan sẽ trở thành một món ăn ấn tượng trên bàn tiệc. Định lượng: 1 đĩa', 1, 3, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (37, N'Xôi vịt', CAST(60000 AS Decimal(18, 0)), CAST(60000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/2017-05-05_135603.jpg', N'Xôi vịt là sự kết hợp giữa gạo nếp, đậu xanh và thịt vịt quay Bắc Kinh trứ danh, nổi tiếng. Thịt vịt không để cả miếng to mà sẽ được băm nhỏ ra rồi trộn đều cùng với xôi, mục đích là để vị ngọt của thịt hòa quyện vào cùng chất ngọt đến từ gạo nếp. Vừa tạo ra một mùi hương quyến rũ, vừa thể hiện tài năng kết hợp các nguyên liệu xuất sắc của những đầu bếp.Định lượng: 1 đĩa', 1, 3, 0, 1)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (38, N'Canh chua hải sản', CAST(80000 AS Decimal(18, 0)), CAST(80000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/canh-chua-hai-san-300x225.jpg', N'Cũng giống như canh ngao chua, canh chua hải sản hấp dẫn thực khách độ ngọt đến từ các loại hải sản như mực, tôm, ngao… kết hợp với chút chua dịu ở nước dùng sau khi đã được nấu cùng cà chua và một số nguyên liệu khác. Canh chua hải sản thường có mặt trong các buổi tiệc lớn, những sự kiện quan trọng, mang lại nhiều trải nghiệm ấn tượng trên bàn ăn của thực khách. Định lượng: 01 Bát tô', 1, 4, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (39, N'Canh ngao chua', CAST(60000 AS Decimal(18, 0)), CAST(60000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/canh-ngao-chua-ngon-thanh-pham.jpg', N'Canh ngao chua là món ăn gây ấn tượng bởi độ ngọt đến từ thịt ngao kết hợp với chút chua dịu ở nước dùng sau khi đã được nấu cùng cà chua và một số nguyên liệu khác. Canh ngao chua thường được ưu tiên lựa chọn trong các buổi tiệc lớn, những sự kiện quan trọng, mang lại nhiều trải nghiệm ấn tượng trên bàn ăn của thực khách. Định lượng: 01 Bát tô', 1, 4, 0, 1)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (40, N'Canh bóng thập cẩm', CAST(100000 AS Decimal(18, 0)), CAST(100000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/canh-bong-thap-cam.jpg', N'Canh bóng thập cẩm là sự kết hợp hài hòa giữa bóng và các nguyên liệu đi kèm. Sự pha trộn các hương vị một cách tinh tế giữa các loại rau củ, hành, bóng cùng nhiều loại nguyên liệu cho thấy kĩ thuật nấu nướng tài tình của người đầu bếp.Khi thưởng thức món ăn này, thực khách sẽ thấy rõ vị ngọt ở trong nước dùng cộng hưởng với mùi thơm ngào ngạt, đầy quyến rũ. Định lượng: 01 Bát tô', 1, 4, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (41, N'Canh nấm tươi thập cẩm', CAST(100000 AS Decimal(18, 0)), CAST(100000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/canhnam.jpg', N'Nấm hương tươi được nấu kèm với chút thịt băm cùng nhiều loại rau củ quả khác đem lại cho thực khách một món ăn ngon ấn tượng. Canh nấm tươi thập cẩm được ưa chuộng trong các bữa tiệc liên hoan hay cưới hỏi bởi độ ngọt sắc đến từ nấm tươi và thịt kết hợp hài hòa cùng vị thanh mát, dịu nhẹ có mặt ở các loại rau củ, mang lại nhiều hứng khởi trên bàn tiệc. Định lượng: 01 Bát tô', 1, 4, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (42, N'Quýt', CAST(80000 AS Decimal(18, 0)), CAST(80000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/fruitplate7.jpg', N'Bày 6 quả', 1, 5, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (43, N'Kem Caramen', CAST(70000 AS Decimal(18, 0)), CAST(70000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/cream-caramel.gif', N'6 hộp', 1, 5, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (44, N'Dưa vàng', CAST(50000 AS Decimal(18, 0)), CAST(50000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/duavang.jpg', N'Bày 6 miếng/đĩa', 1, 5, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (45, N'Hoa quả', CAST(40000 AS Decimal(18, 0)), CAST(40000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/hoaqua.jpg', N'Các loại quả theo màu', 1, 5, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (46, N'Absolut Vodka', CAST(250000 AS Decimal(18, 0)), CAST(237500 AS Decimal(18, 0)), N'https://ruouthuonghieu.com/wp-content/uploads/2018/03/0180.jpg', N'Absolut vodka 375 ml / Absolut vodka 750 ml / Absolut Elyx', 1, 6, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (47, N'Rượu Chivas 18', CAST(250000 AS Decimal(18, 0)), CAST(237500 AS Decimal(18, 0)), N'https://www.phanphoiruoungoai.net/wp-content/uploads/2017/11/hop-qua-chivas-18-blue-signature.jpg', N'Mang đến cho bạn những trải nghiệm về rượu whisky vô cùng đáng giá', 1, 6, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (48, N'Vodka Bạch Dương', CAST(300000 AS Decimal(18, 0)), CAST(285000 AS Decimal(18, 0)), N'https://www.phanphoiruoungoai.net/wp-content/uploads/2017/12/ruou-vodka-bach-duong-700ml.jpg', N'Vodka Bạch Dương 550ml / Vodka Bạch Dương 750ml', 1, 6, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (49, N'F- Negro Amaro', CAST(400000 AS Decimal(18, 0)), CAST(380000 AS Decimal(18, 0)), N'https://winecellar.vn/wp-content/uploads/2016/05/F-Negroamaro-1.jpg', N'Màu tím rất đầy đủ và sâu sắc, phong phú và phức hợp về hương thơm', 1, 7, 5, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (50, N'Rượu Vang Vindoro', CAST(350000 AS Decimal(18, 0)), CAST(315000 AS Decimal(18, 0)), N'https://thegioihaisan.vn/wp-content/uploads/2016/06/vindoro.png', N'Mùi của nấm đen quý phái, nồng nàn mùi hoa quả chín, mứt quả đen', 1, 7, 10, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (51, N'Nước Cam Tươi', CAST(45000 AS Decimal(18, 0)), CAST(45000 AS Decimal(18, 0)), N'https://thegioihaisan.vn/wp-content/uploads/2016/06/orange_juice.jpg', N'Nước cam tươi , nguyên chất , mát lạnh', 1, 8, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (52, N'Nước Ép Dứa', CAST(40000 AS Decimal(18, 0)), CAST(40000 AS Decimal(18, 0)), N'https://dungcubarcafe.com/wp-content/uploads/nuoc-ep-dua-bartenders-mart-e1423214389354-542x640.jpg', N'Nước dứa ép giàu vitamin và khoáng chất', 1, 8, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (53, N'Nước Chanh', CAST(25000 AS Decimal(18, 0)), CAST(25000 AS Decimal(18, 0)), N'http://suckhoedanong.vn/uploads/dinhduong/nuoc-chanh1.jpg', N'Nước chanh nguyên chát , tươi mát', 1, 8, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (54, N'Ngô chiên', CAST(30000 AS Decimal(18, 0)), CAST(30000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/450//uploads/content/297_636232934064686796_hasthumb_thumb.jpg', N'Ngô chiên ròn tan , cay cay, ngon ngon', 1, 9, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (55, N'Khoai lang chiên', CAST(50000 AS Decimal(18, 0)), CAST(50000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/450//uploads/content/khoailangchien.jpg', N'Khoai lang ròn tan , nóng hổi', 1, 9, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (56, N'Nước chanh dây', CAST(35000 AS Decimal(18, 0)), CAST(35000 AS Decimal(18, 0)), NULL, N'Thơm , ngon , mát , tươi ', 1, 8, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (57, N'Khoai lang kén', CAST(45000 AS Decimal(18, 0)), CAST(45000 AS Decimal(18, 0)), NULL, N'Giòn tan , nóng hổi', 1, 9, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (58, N'Cơm tấm', CAST(60000 AS Decimal(18, 0)), CAST(55000 AS Decimal(18, 0)), NULL, N'Cơm gạo dẻo , nóng hổi, thơm ngon', NULL, 3, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (59, N'Nước ép dứa', CAST(55000 AS Decimal(18, 0)), CAST(55000 AS Decimal(18, 0)), NULL, N'Dứa tươi , thơm , ngọt , thanh mát', NULL, 5, 0, 0)
+INSERT [dbo].[Products] ([Id], [Name], [Price], [PromotionPrice], [Image], [Detail], [Quantity], [CategoryId], [PromotionPercent], [isProductNew]) VALUES (62, N'Canh bóng thập cẩm', CAST(150000 AS Decimal(18, 0)), CAST(100000 AS Decimal(18, 0)), N'http://nauco29.com/files/thumb/767/600//uploads/content/canh-bong-thap-cam.jpg', N'Canh bóng thập cẩm là sự kết hợp hài hòa giữa bóng và các nguyên liệu đi kèm. Sự pha trộn các hương vị một cách tinh tế giữa các loại rau củ, hành, bóng cùng nhiều loại nguyên liệu cho thấy kĩ thuật nấu nướng tài tình của người đầu bếp.Khi thưởng thức món ăn này, thực khách sẽ thấy rõ vị ngọt ở trong nước dùng cộng hưởng với mùi thơm ngào ngạt, đầy quyến rũ. Định lượng: 01 Bát tô', NULL, 4, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Products] OFF
+ALTER TABLE [dbo].[OrderItems]  WITH CHECK ADD  CONSTRAINT [FK_OrderItems_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderItems] CHECK CONSTRAINT [FK_OrderItems_Orders]
+GO
+ALTER TABLE [dbo].[OrderItems]  WITH CHECK ADD  CONSTRAINT [FK_OrderItems_Products] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+GO
+ALTER TABLE [dbo].[OrderItems] CHECK CONSTRAINT [FK_OrderItems_Products]
+GO
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK_Orders_Users] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_Users]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Categories] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Categories] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Categories]
+GO
